@@ -513,6 +513,29 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 980px) { .menu__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .menu__grid { grid-template-columns: 1fr; } }
 
+.menu__category {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: .25em;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 56px 0 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.menu__category::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 64px;
+  height: 2px;
+  background: var(--red);
+}
+.menu__category:first-of-type { margin-top: 0; }
+
 .dish {
   position: relative;
   background: var(--bg-card);
@@ -567,9 +590,46 @@ a { color: inherit; text-decoration: none; }
 .dish__desc {
   color: var(--muted);
   font-size: .95rem;
-  margin: 0;
+  margin: 0 0 14px;
+  flex-grow: 1;
 }
-.dish--featured { outline: 1px solid rgba(255,176,46,.35); }
+.dish__price {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: .04em;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,176,46,.25);
+}
+
+/* Wide featured dish (e.g. Whole Grill Chicken) */
+.dish--wide {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  margin-bottom: 28px;
+  outline: 1px solid rgba(255,176,46,.35);
+}
+.dish--wide .dish__media {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 320px;
+}
+.dish--wide .dish__body { padding: 32px; gap: 4px; }
+.dish--wide .dish__title { font-size: 2.2rem; }
+.dish--wide .dish__price { font-size: 2rem; }
+.dish--wide .dish__ribbon {
+  position: static;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+@media (max-width: 720px) {
+  .dish--wide { grid-template-columns: 1fr; }
+  .dish--wide .dish__media { min-height: 220px; }
+  .dish--wide .dish__body { padding: 22px; }
+  .dish--wide .dish__title { font-size: 1.8rem; }
+  .dish--wide .dish__price { font-size: 1.7rem; }
+}
 .dish__ribbon {
   position: absolute;
   top: 14px;
