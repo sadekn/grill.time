@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Grill Time — Menu Admin</title>
+  <link rel="icon" href="images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <header class="admin-nav">
+    <a href="index.html" class="admin-nav__brand">Grill <span>Time</span></a>
+    <span class="admin-nav__title">Menu Admin</span>
+    <button id="signOutBtn" class="admin-btn admin-btn--ghost" hidden>Sign Out</button>
+  </header>
+
+  <main class="admin-main">
+
+    <!-- LOGIN -->
+    <section id="loginSection" class="admin-card" hidden>
+      <h1>Sign in</h1>
+      <p class="admin-muted">Restricted to Grill Time staff.</p>
+      <form id="loginForm" class="admin-form">
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" required autocomplete="current-password" />
+        </label>
+        <button class="admin-btn admin-btn--primary" type="submit">Sign In</button>
+        <p id="loginError" class="admin-error" hidden></p>
+      </form>
+    </section>
+
+    <!-- LIST -->
+    <section id="manageSection" class="admin-card" hidden>
+      <div class="admin-toolbar">
+        <h1>Menu Items</h1>
+        <button id="newItemBtn" class="admin-btn admin-btn--primary">+ Add Item</button>
+      </div>
+      <div id="itemsList" class="items-list"></div>
+      <p id="listEmpty" class="admin-muted" hidden>No items yet. Click <strong>+ Add Item</strong> to create your first one.</p>
+    </section>
+
+    <!-- ITEM FORM -->
+    <section id="itemFormSection" class="admin-card" hidden>
+      <h2 id="itemFormTitle">New Item</h2>
+      <form id="itemForm" class="admin-form" enctype="multipart/form-data">
+        <input type="hidden" name="id" />
+        <input type="hidden" name="existing_image_url" />
+
+        <div class="admin-form__row">
+          <label>
+            <span>Category</span>
+            <select name="category" required>
+              <option value="chicken">Chicken Sandwiches</option>
+              <option value="meat">Meat Sandwiches</option>
+            </select>
+          </label>
+          <label>
+            <span>Sort order</span>
+            <input type="number" name="sort_order" value="100" />
+          </label>
+        </div>
+
+        <label>
+          <span>Tag <small>(e.g. "Perfect Time", "Hot Time")</small></span>
+          <input type="text" name="tag" required maxlength="40" />
+        </label>
+
+        <label>
+          <span>Title</span>
+          <input type="text" name="title" required maxlength="80" />
+        </label>
+
+        <label>
+          <span>Arabic title</span>
+          <input type="text" name="title_ar" dir="rtl" maxlength="80" />
+        </label>
+
+        <label>
+          <span>Description</span>
+          <textarea name="description" rows="3" required maxlength="400"></textarea>
+        </label>
+
+        <div class="admin-form__row">
+          <label>
+            <span>Price (USD)</span>
+            <input type="number" name="price" step="0.01" min="0" required />
+          </label>
+          <label>
+            <span>Ribbon <small>(optional)</small></span>
+            <input type="text" name="ribbon" placeholder="e.g. House Favorite" maxlength="40" />
+          </label>
+        </div>
+
+        <label class="admin-checkbox">
+          <input type="checkbox" name="is_featured" />
+          <span>Featured (renders as the wide highlight card)</span>
+        </label>
+
+        <label>
+          <span>Image</span>
+          <input type="file" name="image" accept="image/*" />
+          <small id="currentImage" class="admin-muted"></small>
+        </label>
+
+        <div class="admin-form__actions">
+          <button type="button" id="cancelItemBtn" class="admin-btn admin-btn--ghost">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn--primary">Save</button>
+        </div>
+        <p id="itemError" class="admin-error" hidden></p>
+        <p id="itemSaving" class="admin-muted" hidden>Saving…</p>
+      </form>
+    </section>
+
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
