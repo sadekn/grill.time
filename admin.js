@@ -103,7 +103,7 @@ async function loadItems() {
     if (item.category !== lastCategory) {
       const h = document.createElement('h3');
       h.className = 'items-list__cat';
-      h.textContent = item.category === 'chicken' ? 'Chicken Sandwiches' : 'Meat Sandwiches';
+      h.textContent = item.category === 'chicken' ? 'Chicken' : 'Meat';
       itemsList.appendChild(h);
       lastCategory = item.category;
     }
