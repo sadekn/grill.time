@@ -2,8 +2,8 @@ import { supabase } from './supabase-config.js';
 
 const CATEGORY_ORDER = ['chicken', 'meat'];
 const CATEGORY_NAMES = {
-  chicken: 'Chicken Sandwiches',
-  meat: 'Meat Sandwiches',
+  chicken: 'Chicken',
+  meat: 'Meat',
 };
 
 const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({
